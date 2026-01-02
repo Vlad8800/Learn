@@ -6,9 +6,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <button id="myBtn">Click Me</button>
+    <h1>Rock - Paper - Scisors!</h1>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <div class ="choices">
+    <button onclick="playGame('rock')">👊</button>
+    <button onclick="playGame('paper')">✋</button>
+    <button onclick="playGame('scissor')">✌️</button>
+
+</div>
+<div id="playerDisplay">
+    Player:
+</div>
+<div id="computerDisplay">
+    Computer:
+</div>
+<div id=resultDisplay></div>
+
+<div class="scoreDisplay">
+    PlayerScore: <span id="playerScoreDisplay">0</span>
+</div>
+<div class="scoreDisplay">
+    ComputerScore: <span id="computerScoreDisplay">0</span>
+</div>
+<script src="script.js"></script>
+</body>                              
+</html> 

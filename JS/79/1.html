@@ -2,13 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Base HTML Template</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Slider</title>
+    <style>
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Додав обмеження ширини для зручності */
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        /* Приховуємо всі картинки за замовчуванням */
+        .slider img {
+            width: 100%;
+            display: none; 
+        }
+
+        /* Цей клас робить картинку видимою */
+        img.displaySlide {
+            display: block;
+            animation: fade 0.5s; /* Додав просту анімацію */
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .prev { left: 0; }
+        .next { right: 0; }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <button id="myBtn">Click Me</button>
 
-    <script src="script.js"></script>
+<div class="slider">
+    <div class="slides">
+        <img class="slide" src="57f0a2871b63debc46990c52ebbeddea.jpg" alt="Image 1">
+        <img class="slide" src="unnamed.jpg" alt="Image 2">
+        <img class="slide" src="unnamed (1).jpg" alt="Image 3">
+    </div>
+    <button class="prev" onclick="prevSlide()">&#10094;</button>
+    <button class="next" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<script>
+    const slides = document.querySelectorAll(".slides img");
+    let slideIndex = 0;
+    let intervalID = null;
+
+    initializeSlider();
+
+    function initializeSlider(){
+        if(slides.length > 0){
+            slides[slideIndex].classList.add("displaySlide");
+            setInterval(nextSlide,5000)
+        }
+    }
+
+    function showSlide(index){
+        // 1. Якщо індекс виходить за межі (кінець), повертаємось на початок
+        if(index >= slides.length){
+            slideIndex = 0;
+        }
+        // 2. Якщо індекс менше нуля (початок), йдемо в кінець
+        else if(index < 0){
+            slideIndex = slides.length - 1;
+        }
+        else {
+            slideIndex = index;
+        }
+
+        // 3. ПРИХОВУЄМО всі картинки (видаляємо клас)
+        slides.forEach(slide => {
+            slide.classList.remove("displaySlide");
+        });
+
+        // 4. ПОКАЗУЄМО поточну картинку (додаємо клас)
+        slides[slideIndex].classList.add("displaySlide");
+    }
+
+    function prevSlide(){
+        // Виправлено назву функції (було pverSlide)
+        slideIndex--;
+        showSlide(slideIndex);
+    }
+
+    function nextSlide(){
+        slideIndex++;
+        showSlide(slideIndex);
+    }
+</script>
+
 </body>
 </html>

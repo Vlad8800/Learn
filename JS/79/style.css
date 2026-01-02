@@ -1,11 +1,39 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    text-align: center;
-    margin-top: 50px;
-}
+      .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Додав обмеження ширини для зручності */
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        /* Приховуємо всі картинки за замовчуванням */
+        .slider img {
+            width: 100%;
+            display: none; 
+        }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-}
+        /* Цей клас робить картинку видимою */
+        img.displaySlide {
+            display: block;
+            animation: fade 0.5s; /* Додав просту анімацію */
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .prev { left: 0; }
+        .next { right: 0; }
